@@ -6,10 +6,11 @@ public class Dialogue_Activator : MonoBehaviour {
 
 
 
-	public GameObject text_alert;
-	public GameObject speech_bubble;
+	public GameObject [] text_alert;
+	public GameObject [] speech_bubble;
 	public GameObject line_trigger;
-	public Animator face;
+	public Animator [] face;
+	public int customer_id = 0;
 
 	private bool clickable = false;
 
@@ -28,11 +29,11 @@ public class Dialogue_Activator : MonoBehaviour {
 
 	void Update()
 	{
-		if(clickable && Input.GetMouseButtonDown(0)){
+		if(clickable && Input.GetMouseButtonDown(0) && text_alert[customer_id].activeSelf){
 			
-			text_alert.SetActive(false);
-			speech_bubble.SetActive(true);
-			face.SetBool("Talking", true);
+			text_alert[customer_id].SetActive(false);
+			speech_bubble[customer_id].SetActive(true);
+			face[customer_id].SetBool("Talking", true);
 
 		}
 

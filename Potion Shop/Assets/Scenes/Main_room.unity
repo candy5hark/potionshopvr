@@ -2862,17 +2862,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 400424640}
-  m_Text: 'Hey! It''s me,
-
-    Janet! From
-
-    "Janet, Janet!"
-
-    Surely you''ve
-
-    heard of my
-
-    band?'
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.7
   m_LineSpacing: 1
@@ -2931,14 +2921,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6db51e52a12a4c90ab0cb33dca5ecb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterPause: 0.2
-  talk_sound: {fileID: 0}
+  letterPause: 0.02
+  talk_sound: {fileID: 8300000, guid: 6c5a56b8dd8fa48f2a884f1539507c91, type: 3}
   intro:
-  - 
-  - 
-  - 
+  - Hey! It's me,~Janet! From~"Janet, Janet!"~Surely you've~heard of my~band?
+  - We're playing~by Lake Selene~for the full~moon soon.~But it gets~very cold~there!
+  - Could you brew~us a potion~that will~warm us up~and help~us glow~on stage?
   wrong_potion_text: 
   right_poition_text: []
+  text_printed_flag: 0
+  dialogue_number: 0
+  face: {fileID: 162073984}
 --- !u!1 &421534007
 GameObject:
   m_ObjectHideFlags: 0
@@ -9867,6 +9860,9 @@ MonoBehaviour:
   text_alert:
   - {fileID: 938894426}
   - {fileID: 1379929973}
+  text_object:
+  - {fileID: 400424640}
+  - {fileID: 478267653}
   speech_bubble:
   - {fileID: 1760951950}
   - {fileID: 1272188419}
@@ -13220,7 +13216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1760951951
 Transform:
   m_ObjectHideFlags: 0

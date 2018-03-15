@@ -7,6 +7,7 @@ public class Dialogue_Activator : MonoBehaviour {
 
 
 	public GameObject [] text_alert;
+	public GameObject [] text_object;
 	public GameObject [] speech_bubble;
 	public GameObject line_trigger;
 	public Animator [] face;
@@ -34,6 +35,15 @@ public class Dialogue_Activator : MonoBehaviour {
 			text_alert[customer_id].SetActive(false);
 			speech_bubble[customer_id].SetActive(true);
 			face[customer_id].SetBool("Talking", true);
+
+
+		}
+
+		if(clickable && text_object[customer_id].GetComponent<Text_Printer>().text_printed_flag && Input.GetMouseButtonDown(0)){
+
+			text_object[customer_id].SendMessage("PrepareNextLine");
+			face[customer_id].SetBool("Talking", true);
+
 
 		}
 

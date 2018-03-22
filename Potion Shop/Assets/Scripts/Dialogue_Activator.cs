@@ -12,6 +12,7 @@ public class Dialogue_Activator : MonoBehaviour {
 	public GameObject line_trigger;
 	public Animator [] face;
 	public int customer_id = 0;
+	public GameObject brewMode;
 
 	private bool clickable = false;
 
@@ -43,6 +44,10 @@ public class Dialogue_Activator : MonoBehaviour {
 
 			text_object[customer_id].SendMessage("PrepareNextLine");
 			face[customer_id].SetBool("Talking", true);
+			if(!brewMode.activeSelf){
+				brewMode.SetActive(true);
+
+			}
 
 
 		}

@@ -27,6 +27,7 @@ public class Text_Activator : MonoBehaviour {
 			//code for inserting object into cauldron
 			//check if cauldron has 2 ingredients and 1 base first.
 			Debug.Log("This Works", brewMode);
+			brewMode.SendMessage("ingredient_in", ingredient_info.transform.name);
 
 
 		}

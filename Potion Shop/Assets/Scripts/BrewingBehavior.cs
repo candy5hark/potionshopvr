@@ -10,6 +10,8 @@ public class BrewingBehavior : MonoBehaviour {
 	private List<string> theCauldron = new List<string>();
 	private string potion_base = "empty";
 	private bool using_base = false;
+	private Dialogue_Activator dialogue_info;
+	private string ingredient_parent;
 
 	void ingredient_in(string ingredient_name)
 	{
@@ -20,12 +22,17 @@ public class BrewingBehavior : MonoBehaviour {
 		{
 			potion_base = ingredient_name;
 			Debug.Log(potion_base);
+			ingredient_parent = GameObject.Find(ingredient_name).transform.parent.name;
+			GameObject.Find(ingredient_parent).SetActive(false);
+
 
 		}
 		else if(theCauldron.Count < 2 && !using_base){
 
 			theCauldron.Add(ingredient_name);
 			Debug.Log(ingredient_name);
+			ingredient_parent = GameObject.Find(ingredient_name).transform.parent.name;
+			GameObject.Find(ingredient_parent).SetActive(false);
 
 
 		}
@@ -35,11 +42,31 @@ public class BrewingBehavior : MonoBehaviour {
 			theCauldron.Add(potion_base);
 			brewFinish = true;
 
-
+			dialogue_info = GameObject.Find("Talkbox").GetComponent<Dialogue_Activator>();
+			brewCorrect = check_if_correct(dialogue_info.customer_id);
+			Debug.Log(brewCorrect);
 
 
 		}
 
+
+
+	}
+
+
+	bool check_if_correct(int customer_id){
+
+
+		switch(customer_id)
+		{
+		case 0:
+			return (theCauldron.Contains("fury_title") && theCauldron.Contains("tea_title") && theCauldron.Contains("firefly_title"));
+		case 1:
+			return (theCauldron.Contains("fury_title") && theCauldron.Contains("tea_title") && theCauldron.Contains("firefly_title"));
+		default:
+			Debug.Log("Invalid Customer ID?");
+			return false;
+		}
 
 
 	}

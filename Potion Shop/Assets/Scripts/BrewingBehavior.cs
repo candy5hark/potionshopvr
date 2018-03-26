@@ -6,6 +6,8 @@ public class BrewingBehavior : MonoBehaviour {
 
 	public bool brewFinish = false;
 	public bool brewCorrect = false;
+	public GameObject brewing_arrow;
+	public AudioClip popNoise;
 
 	private List<string> theCauldron = new List<string>();
 	private string potion_base = "empty";
@@ -24,6 +26,14 @@ public class BrewingBehavior : MonoBehaviour {
 			Debug.Log(potion_base);
 			ingredient_parent = GameObject.Find(ingredient_name).transform.parent.name;
 			GameObject.Find(ingredient_parent).SetActive(false);
+			var audioSource = this.GetComponent<AudioSource>();
+			if (audioSource == null)
+			{
+				audioSource = this.gameObject.AddComponent<AudioSource>();
+			}
+
+			audioSource.clip = this.popNoise;
+			audioSource.Play();
 
 
 		}
@@ -33,6 +43,14 @@ public class BrewingBehavior : MonoBehaviour {
 			Debug.Log(ingredient_name);
 			ingredient_parent = GameObject.Find(ingredient_name).transform.parent.name;
 			GameObject.Find(ingredient_parent).SetActive(false);
+			var audioSource = this.GetComponent<AudioSource>();
+			if (audioSource == null)
+			{
+				audioSource = this.gameObject.AddComponent<AudioSource>();
+			}
+
+			audioSource.clip = this.popNoise;
+			audioSource.Play();
 
 
 		}
@@ -45,6 +63,7 @@ public class BrewingBehavior : MonoBehaviour {
 			dialogue_info = GameObject.Find("Talkbox").GetComponent<Dialogue_Activator>();
 			brewCorrect = check_if_correct(dialogue_info.customer_id);
 			Debug.Log(brewCorrect);
+			brewing_arrow.SetActive(true);
 
 
 		}

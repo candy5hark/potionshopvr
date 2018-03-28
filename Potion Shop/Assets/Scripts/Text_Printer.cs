@@ -14,6 +14,7 @@ public class Text_Printer : MonoBehaviour {
 
 	public int dialogue_number = 0;
 	public int success_fail_dialogue_number = 0;
+	public bool talk_after_success = false;
 
 	public Animator face;
 
@@ -33,15 +34,16 @@ public class Text_Printer : MonoBehaviour {
 
 
 			if( GameObject.Find("time_to_brew_arrow").GetComponent<Process_potion>().potionCorrect ){
-				if(success_fail_dialogue_number < right_potion_text.Length-1){
+				if(!talk_after_success){
 					StartCoroutine(TypeTextCorrect());
 
-					success_fail_dialogue_number++;
+					talk_after_success = true;
 				}
 				else{
-					StartCoroutine(TypeTextCorrect());
+					//StartCoroutine(TypeTextCorrect());
+					talk_after_success = false;
+					GameObject.Find("Ingredients").SendMessage("reset_after_win");
 
-					success_fail_dialogue_number = 0;
 				}
 
 				//StartCoroutine(TypeTextCorrect());
@@ -54,7 +56,7 @@ public class Text_Printer : MonoBehaviour {
 				}
 				else{
 					StartCoroutine(TypeTextIncorrect());
-
+					GameObject.Find("Ingredients").SendMessage("reset_after_loss");
 					success_fail_dialogue_number = 0;
 
 				}

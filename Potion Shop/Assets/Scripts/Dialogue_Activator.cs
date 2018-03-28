@@ -31,6 +31,10 @@ public class Dialogue_Activator : MonoBehaviour {
 
 	void Update()
 	{
+		if(text_alert[customer_id].activeSelf & face[customer_id].GetBool("Talking"))
+		{
+			face[customer_id].SetBool("Talking", false);
+		}
 		if(clickable && Input.GetMouseButtonDown(0) && text_alert[customer_id].activeSelf){
 			
 			text_alert[customer_id].SetActive(false);

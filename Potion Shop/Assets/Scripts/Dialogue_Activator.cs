@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using VRTK;
 using UnityEngine;
 
 public class Dialogue_Activator : MonoBehaviour {
@@ -15,6 +16,7 @@ public class Dialogue_Activator : MonoBehaviour {
 	public GameObject brewMode;
 
 	private bool clickable = false;
+	private bool touchpad_held_down = false;
 
 	void OnTriggerEnter(Collider col){
 		if(col.gameObject == line_trigger)
@@ -31,11 +33,13 @@ public class Dialogue_Activator : MonoBehaviour {
 
 	void Update()
 	{
+
+
 		if(text_alert[customer_id].activeSelf & face[customer_id].GetBool("Talking"))
 		{
 			face[customer_id].SetBool("Talking", false);
 		}
-		if(clickable && Input.GetMouseButtonDown(0) && text_alert[customer_id].activeSelf){
+		if(clickable && ( Input.GetMouseButtonDown(0) || GameObject.Find("LeftController").GetComponent<VRTK_ControllerEvents>().triggerClicked || GameObject.Find("RightController").GetComponent<VRTK_ControllerEvents>().triggerClicked) && text_alert[customer_id].activeSelf){
 			
 			text_alert[customer_id].SetActive(false);
 			speech_bubble[customer_id].SetActive(true);
@@ -44,17 +48,16 @@ public class Dialogue_Activator : MonoBehaviour {
 
 		}
 
-		if(clickable && text_object[customer_id].GetComponent<Text_Printer>().text_printed_flag && Input.GetMouseButtonDown(0)){
+		if(clickable && text_object[customer_id].GetComponent<Text_Printer>().text_printed_flag && ( Input.GetMouseButtonDown(0) ||GameObject.Find("LeftController").GetComponent<VRTK_ControllerEvents>().triggerPressed || GameObject.Find("RightController").GetComponent<VRTK_ControllerEvents>().triggerPressed)){
 
 			text_object[customer_id].SendMessage("PrepareNextLine");
 			face[customer_id].SetBool("Talking", true);
 			if(!brewMode.activeSelf){
 				brewMode.SetActive(true);
-
 			}
-
-
 		}
+
+
 
 	}
 

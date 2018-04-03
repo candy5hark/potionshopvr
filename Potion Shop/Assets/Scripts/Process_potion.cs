@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using VRTK;
 using UnityEngine;
 
 public class Process_potion : MonoBehaviour {
@@ -38,7 +39,7 @@ public class Process_potion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if( can_click && Input.GetMouseButtonDown(0)){
+		if( can_click && ( Input.GetMouseButtonDown(0) || GameObject.Find("LeftController").GetComponent<VRTK_ControllerEvents>().triggerClicked || GameObject.Find("RightController").GetComponent<VRTK_ControllerEvents>().triggerClicked)){
 
 			if(!potionBrewed){
 				arrow.enabled = !arrow.enabled;

@@ -96,11 +96,11 @@ public class BrewingBehavior : MonoBehaviour {
 		case 0:
 			return (theCauldron.Contains("fury_title") && theCauldron.Contains("tea_title") && theCauldron.Contains("firefly_title"));
 		case 1:
-			return (theCauldron.Contains("heart_title") && theCauldron.Contains("mint_title") && theCauldron.Contains("gooshroom_title"));
+			return (theCauldron.Contains("fae_title") && theCauldron.Contains("mint_title") && theCauldron.Contains("gooshroom_title"));
 		case 2:
 			return (theCauldron.Contains("fae_title") && theCauldron.Contains("garlic_title") && theCauldron.Contains("angel_title"));
 		case 3:
-			return (theCauldron.Contains("fae_title") && theCauldron.Contains("loaf_title") && theCauldron.Contains("butter_title"));
+			return (theCauldron.Contains("heart_title") && theCauldron.Contains("dreams_title") && theCauldron.Contains("butter_title"));
 		case 4:
 			return (theCauldron.Contains("heart_title") && theCauldron.Contains("loaf_title") && theCauldron.Contains("dreams_title"));
 		default:

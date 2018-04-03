@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using VRTK;
 using UnityEngine;
 
 public class Text_Activator : MonoBehaviour {
@@ -23,7 +24,7 @@ public class Text_Activator : MonoBehaviour {
 	}
 
 	void Update(){
-		if(ingredient_info.activeSelf && brewMode.activeSelf && Input.GetMouseButtonDown(0)){
+		if(ingredient_info.activeSelf && brewMode.activeSelf &&  ( Input.GetMouseButtonDown(0) || GameObject.Find("LeftController").GetComponent<VRTK_ControllerEvents>().triggerClicked || GameObject.Find("RightController").GetComponent<VRTK_ControllerEvents>().triggerPressed)){
 			//code for inserting object into cauldron
 			//check if cauldron has 2 ingredients and 1 base first.
 			brewMode.SendMessage("ingredient_in", ingredient_info.transform.name);
